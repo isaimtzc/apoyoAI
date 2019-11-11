@@ -23,7 +23,7 @@ def lines_detection(img):
     # Beginning of processing
     kernel = np.ones((7, 7), np.uint8)
     opening = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel)  # erode and dilation of the image (opening method)
-    skeleton = cv2.subtract(img, opening)  # actual image - opened image
+    skeleton = cv2.subtract(img, opening)  # original image - opened image
     # End of processing
     gray = cv2.cvtColor(skeleton, cv2.COLOR_BGR2GRAY)  # convert to gray scale
     img_edg = cv2.Canny(gray, 100, 100)  # detect the edges of the gray image
