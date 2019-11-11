@@ -25,9 +25,9 @@ def lines_detection(img):
     opening = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel)  # erode and dilation of the image (opening method)
     skeleton = cv2.subtract(img, opening)  # actual image - opened image
     # End of processing
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)  # convert to gray scale
+    gray = cv2.cvtColor(skeleton, cv2.COLOR_BGR2GRAY)  # convert to gray scale
     img_edg = cv2.Canny(gray, 100, 100)  # detect the edges of the gray image
-    hgh_lines = cv2.HoughLinesP(img_edg, 1, np.pi/180, 30, maxLineGap =1, minLineLength = 30)#maxLineLength = 210)
+    hgh_lines = cv2.HoughLinesP(img_edg, 1, np.pi/180, 30, maxLineGap =1, minLineLength = 30)
     print(hgh_lines)
     if hgh_lines is not None:
         for line in hgh_lines:
